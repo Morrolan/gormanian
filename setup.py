@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='gormanian',
     packages=['gormanian'],
-    version='0.0.1',
+    version='0.0.4',
     license='MIT',
     description='A simple library to convert a datetime date to use the superior Gormanian Calendar',
     author='Ian Havelock',

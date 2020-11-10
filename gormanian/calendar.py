@@ -1,8 +1,7 @@
+from datetime import datetime
+
 
 class GormanianDatetime:
-
-    from datetime import datetime
-
     _MONTHS = ['March', 'April', 'May', 'June', 'Quintilis', 'Sextilis', 'September', 'October', 'November', 'December',
                'January', 'February', 'Gormanuary']
     _DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -64,7 +63,7 @@ class GormanianDatetime:
 
     def _calculate_month(self):
         month_int = self._dayofyear // self._MONTH_LENGTH
-        month = self._MONTHS[month_int - 1]
+        month = self._MONTHS[month_int]
         return month
 
     def _calculate_month_int(self):
