@@ -1,11 +1,16 @@
 from distutils.core import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='gormanian',
     packages=['gormanian'],
-    version='0.0.4',
+    version='0.0.7',
     license='MIT',
     description='A simple library to convert a datetime date to use the superior Gormanian Calendar',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Ian Havelock',
     author_email='ian@morrolan.com',
     url='https://github.com/Morrolan/gormanian',

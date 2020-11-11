@@ -22,25 +22,32 @@ class GormanianDatetime:
         else:
             self.day = self._calculate_day()
             self.day_string = self._calculate_day_str()
-            self.day_suffix = self._calculate_day_suffix()
             self.week = self._calculate_week()
             self.month_string = self._calculate_month()
             self.month = self._calculate_month_int()
             self.year = date.year
             self.intermission = False
 
+            self._day_suffix = self._calculate_day_suffix()
+
         self.as_string = self.__str__()
         self.isoformat = self._iso_format()
 
     def __str__(self):
-        return f"{self.day_string} {self.day}th {self.month_string} {self.year}"
+        if self.intermission is False:
+            return f"{self.day_string} {self.day}{self._day_suffix} {self.month_string} {self.year}"
+        else:
+            return "Intermission"
 
     def _iso_format(self):
         return f"{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}"
 
     def _calculate_day(self):
-        a = self._dayofyear % self._MONTH_LENGTH
-        return a
+        doy = self._dayofyear % self._MONTH_LENGTH
+
+        if doy == 0:
+            doy = 28
+        return doy
 
     def _calculate_day_suffix(self):
         if self.day in [1, 21]:
@@ -53,8 +60,8 @@ class GormanianDatetime:
             return "th"
 
     def _calculate_day_str(self):
-        a = self._dayofyear % len(self._DAYS)
-        day_str = self._DAYS[a]
+        day_index = self._dayofyear % len(self._DAYS)
+        day_str = self._DAYS[day_index - 1]
         return day_str
 
     def _calculate_week(self):
@@ -62,13 +69,18 @@ class GormanianDatetime:
         return week_int
 
     def _calculate_month(self):
-        month_int = self._dayofyear // self._MONTH_LENGTH
-        month = self._MONTHS[month_int]
+        if self._dayofyear % self._MONTH_LENGTH == 0:
+            month_int = self._dayofyear // self._MONTH_LENGTH
+            month = self._MONTHS[month_int - 1]
+        else:
+            month_int = self._dayofyear // self._MONTH_LENGTH
+            month = self._MONTHS[month_int]
+
         return month
 
     def _calculate_month_int(self):
         month_int = self._dayofyear // self._MONTH_LENGTH
-        return month_int
+        return month_int + 1
 
 
 def convert(datetime_obj: datetime):

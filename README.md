@@ -1,6 +1,6 @@
 # Gormanian
 
-## Gormanian Calendar Calculator
+## Gormanian Calendar Calculator/Converter
 
 ### What is it?
 
@@ -11,3 +11,41 @@ You can watch the video in question [here](https://www.youtube.com/watch?v=vunES
 ### But why?
 
 Why not?  I happen to agree with the calendar, and decided to write this for a laugh.
+
+### How to Use
+
+#### To convert the current date
+
+```python
+from datetime import datetime
+import gormanian
+
+response = gormanian.now()
+
+print(response.as_string)
+```
+
+
+#### To convert a specific date
+Use the standard datetime format for any given date.
+
+```python
+from datetime import datetime
+import gormanian
+
+response = gormanian.convert(datetime(2000, 12, 1))
+
+print(response.as_string)
+```
+
+#### ISO-8601 format:
+You can also retrieve the date in ISO-8601 basic format.
+
+```python
+from datetime import datetime
+import gormanian
+
+response = gormanian.convert(datetime(2000, 12, 31))
+
+print(response.isoformat)
+```
