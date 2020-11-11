@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -8,7 +8,7 @@ setup(
     packages=['gormanian'],
     version='0.0.7',
     license='MIT',
-    description='A simple library to convert a datetime date to use the superior Gormanian Calendar',
+    description='A simple library to convert a datetime date to use the superior Gormanian Calendar.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Ian Havelock',

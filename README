@@ -18,9 +18,9 @@ Why not?  I happen to agree with the calendar, and decided to write this for a l
 
 
     import gormanian
-    
+
     response = gormanian.now()
-    
+
     print(response.as_string)
 
 
@@ -30,9 +30,9 @@ Use the standard datetime format for any given date.
 
     from datetime import datetime
     import gormanian
-    
+
     response = gormanian.convert(datetime(2000, 12, 1))
-    
+
     print(response.as_string)
 
 #### ISO-8601 format:
@@ -40,8 +40,8 @@ You can also retrieve the date in ISO-8601 basic format.
 
     from datetime import datetime
     import gormanian
-    
+
     response = gormanian.convert(datetime(2000, 12, 31))
-    
+
     print(response.isoformat)
 
