@@ -11,9 +11,17 @@ class GormanianDatetime:
     def __init__(self, date: datetime):
         self._dayofyear = date.timetuple().tm_yday
 
-        if self._dayofyear >= 365:
+        if self._dayofyear == 365:
             self.day = ""
-            self.day_string = "Intermission"
+            self.day_string = "First Intermission"
+            self.week = ""
+            self.month_string = ""
+            self.month = ""
+            self.year = date.year
+            self.intermission = True
+        elif self._dayofyear >= 366:
+            self.day = ""
+            self.day_string = "Second Intermission"
             self.week = ""
             self.month_string = ""
             self.month = ""
@@ -37,7 +45,7 @@ class GormanianDatetime:
         if self.intermission is False:
             return f"{self.day_string} {self.day}{self._day_suffix} {self.month_string} {self.year}"
         else:
-            return "Intermission"
+            return f"{self.day_string} {self.year}"
 
     def _iso_format(self):
         return f"{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}"
